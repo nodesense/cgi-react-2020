@@ -1,3 +1,14 @@
+## Clone
+
+```
+    git clone https://github.com/nodesense/cgi-react-2020
+    cd cgi-react-2020
+
+    npm install
+
+    npm start
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
