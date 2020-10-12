@@ -2,6 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// Props? Data passed from parent to child, parent own the data, child consume the data,
+            // child should not modify the data
+
+// State, is for a component to have its own data which can be mutable/update/modify...
+
 class Like extends React.Component {
     // stage-3
     // propTypes, defaultProps can be static field
@@ -24,11 +29,46 @@ class Like extends React.Component {
         super(props); // base class constructor
         console.log("like cons", props)
         console.log("like cons this.props ", this.props)
+
+        // state is keyword, it shoud be object, can have key/value pair
+        // state can be changed using setState, shoud not be changed directly using reference
+        // this.state SHOULD NOT be mutated directly, always use setState
+        // state is applicable only for class component. 
+        // constructor is a good place to initialize default values
+        // can be initialized with props passed as argument
+        this.state = {
+            likeCounter : props.likes , // initialize state with props value
+        }
     }
 
     up(e) {
         console.log("up event", e);
         console.log("This ", this)
+
+        //BAD, mutating state directly
+        //this.state.likeCounter++
+        //this.state.likeCounter += 1
+
+        // GOOD Part, setState
+        // setState is async func
+        // new value is not effective immediately
+        // but it will be effective before calling render function
+        // setState trigger render function after the current state updated
+        console.log("LikeCounter before setState ", this.state.likeCounter)
+        // NOT RECOMMENDED if the code has side effects
+        this.setState({
+            likeCounter: this.state.likeCounter + 1
+        })
+        console.log("LikeCounter after setState ", this.state.likeCounter)
+
+        // SIDE EFFECT, try increaing value twice/depencency, this WILL NOT WORK
+        console.log("LikeCounter before setState ", this.state.likeCounter)
+        // NOT RECOMMENDED if the code has side effects
+        this.setState({
+            likeCounter: this.state.likeCounter + 1
+        })
+        console.log("LikeCounter after setState ", this.state.likeCounter)
+
     }
 
     // alternative, best practice to handle two problems
@@ -38,14 +78,46 @@ class Like extends React.Component {
     down = (e) => {
         console.log("down event", e);
         console.log("This", this)
+
+        // functional setState, GOOD and recommended approach
+        // good  for dependent, side effects
+        // setState(function as input) function(nextState, props), return new state
+        // remember, this also async, the state is not effective immediately
+        // nextState {likeCounter: 1000}
+        this.setState ( (nextState, props) => {
+            console.log("setState functional, nextState ", nextState)
+            // return new State {likeCounter: 999}
+            return {
+                likeCounter: nextState.likeCounter - 1
+            }
+        })
+
+        // Side effect, reactive changes, -1 twice, WILL WORK
+        // returned new state from previous functional setstate passed as nextState here
+        // nextState {likeCounter: 999}
+        this.setState ( (nextState, props) => {
+            console.log("setState functional, nextState ", nextState)
+            return {
+                likeCounter: nextState.likeCounter - 1
+            }
+        })
+         
     }
 
+    // render is called multiple times
+    // 1. when component created, mouting life cycle
+    // 2. whenever this.forceUpdate, this.setState called on update cycle
+    // 3. whenever parent render called on update cycle
+    // whenever render called, new virtual doms created, diffed, if any diff, patched with real dom
     render() {
         console.log("Like render props ", this.props)
+        console.log("LikeCounter in render   ", this.state.likeCounter)
+
         const {pageName, likes} = this.props;
         return (
             <div>
                 <p>{pageName} Likes: {likes}</p>
+                <p> likeCounter {this.state.likeCounter} </p>
                 {/* we pass a function reference to react, 
                     react call the fucntion ref without object context, this is undefined */}
                 <button onClick={this.up}> +1 this ERROR </button>
