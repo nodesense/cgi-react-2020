@@ -1,6 +1,8 @@
 // About.js
 import React from 'react';
 
+import {Link} from 'react-router-dom';
+
 // n => (n * n)
 
 // notice, paranthese not curly brace
@@ -22,6 +24,14 @@ const About = ({ founders, branches:{headOffice, branchOffice} }) => (
 
         <p>Head Office {headOffice.city}</p>
         <p>Branch Office {branchOffice.city}</p>
+
+        {/* use Link or NavLink to move from one page to another page : SPA
+            do'nt use <a href, as it will leave the page */}
+        <Link to="/cart">Cart</Link>
+            <br />
+        {/* DONT DO THIS a href, it will break SPA, send request to server */}
+        <a href="/cart"> a href Cart Req to server/bad part </a>
+
     </div>
 )
 

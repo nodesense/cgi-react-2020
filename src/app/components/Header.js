@@ -1,6 +1,8 @@
 // Header.js
 import React from 'react';
 
+import {NavLink} from 'react-router-dom';
+
 // parent to child communication
 // using props - properties
 // <Header appTitle="ShopX"
@@ -16,6 +18,16 @@ function Header(props) {
     return (
         <div>
             <h2>{props.appTitle}</h2>
+
+            {/* NavLink also match starts with patten
+                use exact to force exactly equal to - default path
+            */}
+
+            <NavLink to="/" exact className="button"  activeClassName="success" > Home </NavLink>
+            <NavLink to="/products" className="button" activeClassName="success"> Products </NavLink>
+            <NavLink to="/cart" className="button"  activeClassName="success" > Cart </NavLink>
+            <NavLink to="/about" className="button" activeClassName="success"> About </NavLink>
+            <NavLink to="/login" className="button" activeClassName="success"> Login </NavLink>
         </div>
     )
 }
