@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
  
     //TODO: shouldComponentUpdate
 
-    recalculate(props) {
+    static recalculate(prevState, props) {
         let discount = 0;
 
         if (props.count >= 10) {
@@ -31,13 +31,35 @@ import PropTypes from "prop-types";
 
         let grandTotal = props.amount - (props.amount * discount / 100);
 
-        this.setState({
+        return {
             discount, 
             grandTotal
-        })
+        }
     }
      
+    static getDerivedStateFromProps(props, state) {
+        return CartSummary.recalculate(state, props)
+    }
 
+    // is not called during initial/creation stage
+    // called only during update cycle, this.forceUpdate, this.setState, parent render
+    // should return true or false
+    // if return true, render shall be called on update cycle
+    // if return false, render shall not be called on update cycle
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("CartSummary shouldComponentUpdate ")
+        console.log("\nnext props", nextProps, "\ncurrent props", this.props)
+        console.log("\nnext state", nextState, "\ncurrent state", this.state)
+        // FIXME: compare prevProp with current props, prev state and current state, return true or false
+
+        const canRender = nextProps.amount !== this.props.amount ||
+                          nextProps.count !== this.props.count ||
+                          nextState.discount !== this.state.discount ||
+                          nextState.grandTotal !== this.state.grandTotal
+
+        console.log("canRender", canRender)
+        return canRender;
+    }
 
     
     render() {

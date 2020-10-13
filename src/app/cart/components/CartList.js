@@ -17,7 +17,7 @@ import CartItem from "./CartItem";
     render() {
         console.log("CartList Render");
 
-        let {items} = this.props;
+        let {items, updateItem, removeItem} = this.props;
 
         return (
             <div> 
@@ -34,6 +34,12 @@ import CartItem from "./CartItem";
                 </thead>
                 <tbody>
                     {/* TODO props items map with CartItem */ }
+
+                    {
+                        items.map(item => <CartItem key={item.id} item={item}
+                                            updateItem={updateItem}
+                                            removeItem={removeItem} />)
+                    }
 
                 </tbody>
             </table>

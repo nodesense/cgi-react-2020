@@ -8,18 +8,17 @@ import CartSummary from "../components/CartSummary";
 
 class Cart extends Component {
     static defaultProps = {
-    
     }
 
     static propTypes = {
-    
     }
+
     constructor(props) {
         super(props);
 
         this.state = {
             items: [ 
-            			{id: 1, name: 'P1', price: 100, qty: 1}
+            			{id: 1, name: 'P1', price: 100, qty: 5}
             	   ],
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty
@@ -36,21 +35,44 @@ class Cart extends Component {
             qty: 1
         }
 
-        //TODO:
- 
+        this.setState( {
+            items: [...this.state.items, item]
+        })
     }
     
+    // Child to parent: By means of Callback
+    // Cart shall pass removeItem, updateItem functions as props to CartList
+    // CartList shall pass removeItem, updateItem functions as props to CartItem
+    // When -1/+1, X on events in CartItem, cartItem shall call removeItem/updateItem directly with arg
     removeItem = (id) => {
-        //TODO
+        console.log("removeItem ", id, "called by CartItem")
+        
+        // filter not needed the item
+        this.setState((prevState, props) => {
+            return {
+                items: prevState.items.filter ( item => item.id !== id)
+            }
+        })
     }
 
     updateItem = (id, qty) => {
-        //TODO
+        console.log("updateItem", id, qty, "called by cartitem")
+        
+        this.setState( (prevState, props) => {
+            return {
+                // clone the array of items using map
+                // clone the object/item of qty
+                // if item no need to change, return as is
+                // if change needed, clone it and update the qty
+                items: prevState.items.map ( item => item.id !== id? item: {...item, qty: qty}  )
+            }
+        })
     }
 
     empty = () => {
-        //TODO
-         
+        this.setState({
+            items: []
+        }) 
     }
 
     //dummy
@@ -61,24 +83,29 @@ class Cart extends Component {
     }
 
     // derived data from state
-    recalculate(items) {
+    // make it friendly with setState functional pattern
+    static recalculate(prevState, props) {
         let count = 0, 
             amount = 0;
 
-        for (let item of items) {
+        for (let item of prevState.items) {
             amount += item.price * item.qty;
             count += item.qty;
         }
 
-        this.setState({
-            amount,
-            count
-        })
+        return {
+            //es6
+            amount, // amount: amount
+            count, // count: count
+        }
     }
 
-    //TODO:
-    //componentWillMount
-    
+    // called before render
+    static getDerivedStateFromProps(props, state) {
+        console.log("Cart getDerivedStateFromProps")
+        // memoize, to avoid expensive computations again and again
+        return  Cart.recalculate(state, props)
+    }
     
     render() {
         console.log("Cart render")
@@ -102,6 +129,7 @@ class Cart extends Component {
 
             <CartList  items={this.state.items}  
                        removeItem={this.removeItem}
+                       updateItem={this.updateItem}
             />
 
             <CartSummary amount={this.state.amount}

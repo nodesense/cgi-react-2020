@@ -11,7 +11,6 @@ import About from './pages/About';
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
 
-
 // composition of components, not HTML TAGS
 // parent, child
 
@@ -33,10 +32,13 @@ class App extends React.Component {
                 
                 <Cart />
 
-                <Home ></Home>
+                {/* <Home ></Home>
+
                 <About founders= { ['Venkat', 'Krish'] }
                        branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 
                 />
+                 */}
+                 
                 {/* showAddress passed as boolean true 
                  company="Training" is defauled in Footer
                 */}
