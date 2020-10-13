@@ -34,3 +34,6 @@ Event Loop
                 add Favorite
                 remove
                 empty
+
+    Navigation
+    context
