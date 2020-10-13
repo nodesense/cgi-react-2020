@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import CartList from "../components/CartList";
 import CartSummary from "../components/CartSummary";
 
+import {Link} from 'react-router-dom';
+
 class Cart extends Component {
     static defaultProps = {
     }
@@ -125,6 +127,10 @@ class Cart extends Component {
             <button onClick={this.refresh}>
                 Refresh
             </button>
+
+            <Link to="/checkout" className="button">
+                Checkout
+            </Link>
             
             <CartList  items={this.state.items}  
                        removeItem={this.removeItem}

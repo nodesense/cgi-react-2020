@@ -18,7 +18,7 @@ function Header(props) {
     return (
         <div>
             <h2>{props.appTitle}</h2>
-
+            
             {/* NavLink also match starts with patten
                 use exact to force exactly equal to - default path
             */}

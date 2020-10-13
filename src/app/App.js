@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import Checkout from './cart/pages/Checkout';
 
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
@@ -50,6 +51,10 @@ class App extends React.Component {
                         <Cart />
                     </Route>
 
+                    <Route path="/checkout">
+                        <Checkout />
+                    </Route>
+
                     <Route path="/about"
                         render= { (props) => (<About founders= { ['Venkat', 'Krish'] }
                                                         branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 
@@ -77,7 +82,11 @@ class App extends React.Component {
                         year={2020}
                         
                         showAddress
-                        ></Footer>
+                >
+                {/* content children, react passes this content as props.chidlren */} 
+                <p> Contact Time: 9:30 AM to 5:30 PM</p> 
+                <p> Sat/Sun Holiday</p>
+                </Footer>
             </div>
         )
     }

@@ -7,7 +7,9 @@ import PropTypes from 'prop-types'; // npm i prop-types
 // ES6
 const Footer = (props) => {
     // destructuing object
-    const {appTitle, year, company, showAddress} = props;
+    // props.children is a keyword, refers to content children <p>Hello</p>
+    // <Footer> <p>Hello</p> </Footer>
+    const {appTitle, year, company, showAddress, children} = props;
     return (
         <div>
             <hr />
@@ -15,6 +17,8 @@ const Footer = (props) => {
             {/* JSX doesn't accept statement, but accept expressions */}
 
             {showAddress && <p>MG Road, Bengaluru</p>}
+
+            {children}
         </div>
     )
 }
