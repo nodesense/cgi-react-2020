@@ -19,3 +19,18 @@ Event Loop
 
 5. Now reacts update the batches of nextStates and merge with this.state
 6. calls render function
+
+
+
+## Assignment
+    Favorite products
+
+    favorite
+        components
+            FavoriteList
+            FavoriteItem
+        pages
+            Favorite
+                add Favorite
+                remove
+                empty
