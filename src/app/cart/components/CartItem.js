@@ -2,7 +2,15 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+import ThemeContext from '../../contexts/Theme';
+
 class CartItem extends PureComponent {
+    // since we haven't provided any theme provider
+    // default values should be applied
+    // this.context
+
+    static contextType = ThemeContext
+
     constructor(props) {
         super(props);
     }
@@ -37,6 +45,7 @@ class CartItem extends PureComponent {
         let {item, updateItem, removeItem} = this.props;
 
         console.log("CartItem Render ", item.id);
+        console.log("Cart Item theme context", this.context)
 
         return (
             <tr>
@@ -51,8 +60,9 @@ class CartItem extends PureComponent {
 
                 <button onClick={ () => updateItem(item.id, item.qty - 1)  }>
                         -1
-                </button>    
-                <button onClick={this.remove}>
+                </button>   
+
+                <button style={ {background: this.context}  } onClick={this.remove}>
                         X
                 </button>
                 </td>

@@ -2,6 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types'; // npm i prop-types
 
+import ThemeContext from "../contexts/Theme";
+
+
 // PropTypes validate properties, show warning
 // contract validation data type, required/not
 // ES6
@@ -19,6 +22,10 @@ const Footer = (props) => {
             {showAddress && <p>MG Road, Bengaluru</p>}
 
             {children}
+            {/* to ues multiple consumers, or use in functional component */}
+            <ThemeContext.Consumer>
+            {value => <button style= { {background: value} }>Welcome</button> }
+            </ThemeContext.Consumer>
         </div>
     )
 }

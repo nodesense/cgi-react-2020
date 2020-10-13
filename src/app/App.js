@@ -15,12 +15,24 @@ import Cart from './cart/pages/Cart';
 
 import {Route, Switch} from 'react-router-dom';
 
+import ThemeContext from './contexts/Theme';
+
 // composition of components, not HTML TAGS
 // parent, child
 
 // class component
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            theme: "pink"
+        }
+    }
+
+    setTheme(theme) {
+        this.setState({theme})
+    }
     // react keyword
     // create and return v.dom, must
     render() {
@@ -28,9 +40,23 @@ class App extends React.Component {
 
         return (
             <div>
+                {/* provider override the default values */}
+                <ThemeContext.Provider value={this.state.theme}>
                 {/* comments here, html comments doens't work in jsx */}
                 {/* App is parent, header, fooer, about, home are chilren */}
+                <button style = { {background: 'lightblue'}}
+                        onClick={ () => this.setTheme("lightblue")}
+                > Blue </button>
 
+                <button style = { {background: 'pink'}}
+                         onClick={ () => this.setTheme("pink")}
+                > Pink 
+                </button>
+
+                <button style = { {background: 'green'}}
+                        onClick={ () => this.setTheme("green")}
+                > Green </button>
+                
                 <Header appTitle="ShopX" />
 
                 {/* if more than one route matches, then all matching routes are 
@@ -87,6 +113,7 @@ class App extends React.Component {
                 <p> Contact Time: 9:30 AM to 5:30 PM</p> 
                 <p> Sat/Sun Holiday</p>
                 </Footer>
+                </ThemeContext.Provider>
             </div>
         )
     }

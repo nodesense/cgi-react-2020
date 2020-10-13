@@ -1,6 +1,12 @@
 // pages/Checkout.js
 import React from 'react';
 
+// Ref: Reference to REAL DOM
+// createRef
+// access to d3, canvas, div, access to input focus....
+// Ref is local to component, works with class component
+
+
 // React works based on virtual dom
 // End user interact with Real dom
 // Forms are control, accept inputs from the user
@@ -14,6 +20,16 @@ class Checkout extends React.Component {
             lastname: '',
             city: ''
         }
+
+        // don't assign ref to state, as ref is reference to dom, control/ui, not a data
+        this.firstnameRef = React.createRef();
+    }
+
+    componentDidMount() {
+        // Ref is available after component mounted
+        // current is a real dom, input tag
+        console.log("REAL DOM", this.firstnameRef.current)
+        this.firstnameRef.current.focus(); // set the cursor to input element
     }
 
     handleChange = (e) => {
@@ -46,6 +62,7 @@ class Checkout extends React.Component {
                     <input name="firstname" type="text" 
                            value={this.state.firstname}
                            onChange={this.handleChange}
+                           ref={this.firstnameRef}
                            />
 
                     Last name
