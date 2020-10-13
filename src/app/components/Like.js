@@ -2,8 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Props? Data passed from parent to child, parent own the data, child consume the data,
-            // child should not modify the data
+// Props? Data passed from parent to child, parent own the data, child consume the data, child should not modify the data
 
 // State, is for a component to have its own data which can be mutable/update/modify...
 
@@ -97,6 +96,7 @@ class Like extends React.Component {
         // nextState {likeCounter: 999}
         this.setState ( (nextState, props) => {
             console.log("setState functional, nextState ", nextState)
+            //return new State {likeCounter: 998}, this will be set to this.state later
             return {
                 likeCounter: nextState.likeCounter - 1
             }
@@ -104,12 +104,34 @@ class Like extends React.Component {
          
     }
 
+    up2 = (e) => {
+        // to understand how to handle side effects using react setState callback
+        // NOT RECOMMENEDED due to rerender
+        console.log("up2 state", this.state)
+        this.setState({
+            likeCounter: this.state.likeCounter + 1
+        }, () => {
+            // callback called after the render function
+            // state is updated
+            // drawback: render will be called twice
+            console.log("up2 callback called", this.state)
+            // async
+            this.setState({
+                likeCounter: this.state.likeCounter + 1
+            })
+        })
+    }
+
+    eventEx = () => {
+        console.trace(); // print callstack, don't use in production
+    }
     // render is called multiple times
     // 1. when component created, mouting life cycle
     // 2. whenever this.forceUpdate, this.setState called on update cycle
     // 3. whenever parent render called on update cycle
     // whenever render called, new virtual doms created, diffed, if any diff, patched with real dom
     render() {
+        console.log("Like Render called")
         console.log("Like render props ", this.props)
         console.log("LikeCounter in render   ", this.state.likeCounter)
 
@@ -118,7 +140,9 @@ class Like extends React.Component {
             <div>
                 <p>{pageName} Likes: {likes}</p>
                 <p> likeCounter {this.state.likeCounter} </p>
-                {/* we pass a function reference to react, 
+
+                <button onClick={this.eventEx}>Event Trace</button>
+                {/* we pass a function reference to react without this context, 
                     react call the fucntion ref without object context, this is undefined */}
                 <button onClick={this.up}> +1 this ERROR </button>
                 {/* => ensure that this is from lexical scope, ie class scope
@@ -127,6 +151,7 @@ class Like extends React.Component {
                         creates functions many times, cause issue pure component
                 */}
                 <button onClick={ (e) => this.up(e) }> +1/this working, not recommended</button>
+                <button onClick={this.up2}> +1/this working, but calls render twice</button>
 
                 <button onClick={this.down}>-1 this working,GOOD</button>
             </div>
