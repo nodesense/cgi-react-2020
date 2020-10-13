@@ -126,7 +126,6 @@ class Cart extends Component {
                 Refresh
             </button>
             
-
             <CartList  items={this.state.items}  
                        removeItem={this.removeItem}
                        updateItem={this.updateItem}

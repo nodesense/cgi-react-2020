@@ -7,13 +7,15 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
+import NotFound from './pages/NotFound';
 
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
 
+import {Route, Switch} from 'react-router-dom';
+
 // composition of components, not HTML TAGS
 // parent, child
-
 
 // class component
 
@@ -29,8 +31,37 @@ class App extends React.Component {
                 {/* App is parent, header, fooer, about, home are chilren */}
 
                 <Header appTitle="ShopX" />
-                
-                <Cart />
+
+                {/* if more than one route matches, then all matching routes are 
+                    displayed 
+
+                    Adding Switch solve this problem,
+                    Switch picks the first match
+                */}
+
+                {/* by default path uses startsWith pattern for matching
+                    by adding exact property, it uses exactly equal to
+                */}
+
+                <Switch>
+                    <Route path="/" exact component={Home} />
+
+                    <Route path="/cart">
+                        <Cart />
+                    </Route>
+
+                    <Route path="/about"
+                        render= { (props) => (<About founders= { ['Venkat', 'Krish'] }
+                                                        branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 
+                                                    />) }
+                    />
+
+                    <Route path="*">
+                        <NotFound />
+                    </Route>
+                </Switch>
+
+                {/* <Cart /> */}
 
                 {/* <Home ></Home>
 
@@ -38,7 +69,7 @@ class App extends React.Component {
                        branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 
                 />
                  */}
-                 
+
                 {/* showAddress passed as boolean true 
                  company="Training" is defauled in Footer
                 */}
