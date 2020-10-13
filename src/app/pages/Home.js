@@ -5,13 +5,30 @@ import Like from '../components/Like';
 
 //React.Component === Component
 class Home extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            homeLikes : 1000
+        }
+    }
+
+    reset = (e) => {
+        console.log("reset")
+        this.setState({
+            homeLikes: 0
+        })
+    }
+
     render() {
         console.log("Home render")
         return (
             <div>
                 <h2>Home Page</h2>
+                <h2>Liked by {this.state.homeLikes} people</h2>
 
-                <Like pageName="Home" likes={1000} />
+                <button onClick={this.reset}>Reset</button>
+
+                <Like pageName="Home" likes={this.state.homeLikes} />
             </div>
         )
     }

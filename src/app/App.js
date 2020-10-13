@@ -8,6 +8,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 
+// FIXME: Lazy load cart using router
+import Cart from './cart/pages/Cart';
+
 
 // composition of components, not HTML TAGS
 // parent, child
@@ -27,6 +30,9 @@ class App extends React.Component {
                 {/* App is parent, header, fooer, about, home are chilren */}
 
                 <Header appTitle="ShopX" />
+                
+                <Cart />
+
                 <Home ></Home>
                 <About founders= { ['Venkat', 'Krish'] }
                        branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 

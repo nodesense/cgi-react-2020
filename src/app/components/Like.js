@@ -125,6 +125,19 @@ class Like extends React.Component {
     eventEx = () => {
         console.trace(); // print callstack, don't use in production
     }
+
+
+    // return new state if any, return null/undefined if no change
+    // is called before render duing creation/initial mounting, or updates
+    static getDerivedStateFromProps(props, state) {
+        console.log("Like getDerivedStateFromProps called ")
+        console.log("state", state)
+        console.log("props", props)
+
+        return null;
+    }
+ 
+
     // render is called multiple times
     // 1. when component created, mouting life cycle
     // 2. whenever this.forceUpdate, this.setState called on update cycle
