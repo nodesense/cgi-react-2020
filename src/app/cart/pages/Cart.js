@@ -8,6 +8,10 @@ import CartSummary from "../components/CartSummary";
 
 import {Link} from 'react-router-dom';
 
+import memoizeOne from 'memoize-one';
+
+ 
+
 class Cart extends Component {
     static defaultProps = {
     }
@@ -93,11 +97,13 @@ class Cart extends Component {
 
     // derived data from state
     // make it friendly with setState functional pattern
-    static recalculate(prevState, props) {
+    static recalculate(items) {
+        console.log("***Doing expensive computation...........")
+
         let count = 0, 
             amount = 0;
 
-        for (let item of prevState.items) {
+        for (let item of items) {
             amount += item.price * item.qty;
             count += item.qty;
         }
@@ -109,11 +115,15 @@ class Cart extends Component {
         }
     }
 
+    static memoizedRecalculate = memoizeOne(Cart.recalculate)
+
     // called before render, creation/updation
     static getDerivedStateFromProps(props, state) {
         console.log("Cart getDerivedStateFromProps")
-        // memoize, to avoid expensive computations again and again
-        return  Cart.recalculate(state, props)
+       // without memoize
+        // return  Cart.recalculate(state, props)
+        // with  memoize, to avoid expensive computations again and again
+        return  Cart.memoizedRecalculate(state.items)
     }
     
     render() {

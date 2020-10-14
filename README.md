@@ -15,11 +15,15 @@
     npm install prop-types 
     npm install react-router-dom
 
+    npm install memoize-one
+
 
 
 ```
 
-From Linux
+## REST API
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

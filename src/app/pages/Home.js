@@ -19,6 +19,11 @@ class Home extends Component {
         })
     }
 
+    componentWillUnmount() {
+        console.log("Home component will unmount")
+    }
+
+
     render() {
         console.log("Home render")
         return (

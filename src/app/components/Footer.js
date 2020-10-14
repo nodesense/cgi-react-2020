@@ -24,7 +24,7 @@ const Footer = (props) => {
             {children}
             {/* to ues multiple consumers, or use in functional component */}
             <ThemeContext.Consumer>
-            {value => <button style= { {background: value} }>Welcome</button> }
+                {value => <button style= { {background: value} }>Welcome</button> }
             </ThemeContext.Consumer>
         </div>
     )
