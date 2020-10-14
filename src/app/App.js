@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
+import ProductList from './pages/ProductList';
 
 import {Route, Switch} from 'react-router-dom';
 
@@ -85,6 +86,10 @@ class App extends React.Component {
 
                     <Route path="/checkout">
                         <Checkout />
+                    </Route>
+
+                    <Route path="/products">
+                        <ProductList />
                     </Route>
 
                     {/* pass props and router props to component, preffered method */}

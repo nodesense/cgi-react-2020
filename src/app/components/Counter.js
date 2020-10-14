@@ -47,7 +47,7 @@ const Counter = ({initialCount}) => {
     // when componnet get destroyed
     useEffect( () => {
         // componentDidMount, componentDidUpdate code goes here
-        console.log("useEffect called")
+        console.log("useEffect called on Counter  - Child")
         console.log("Counter is ", counter)
 
         // this function is called by react when component is unmouting for cleanup

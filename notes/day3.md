@@ -101,4 +101,15 @@ Func Component with Hooks
        calc.add(10);
         calc.add(10);
 
-# Dependency/Using mixed useEffect and setState etc
+# Dependency/Using mixed useEffect 
+
+
+Parent     effect - it still building the ui
+            After I complete the child component, I want the reference of the child component
+    Child effect    - after the child complete, the child ready- dom, referenecs all ready
+
+<parent>
+    <child1></child1> - completed first, avail for ref
+
+    <childn></childn>
+</parent> - after the child
