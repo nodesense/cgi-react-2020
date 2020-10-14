@@ -28,6 +28,8 @@ function Header(props) {
             <NavLink to="/cart" className="button"  activeClassName="success" > Cart </NavLink>
             <NavLink to="/about" className="button" activeClassName="success"> About </NavLink>
             <NavLink to="/login" className="button" activeClassName="success"> Login </NavLink>
+            <NavLink to="/contact" className="button" activeClassName="success"> Contact </NavLink>
+
         </div>
     )
 }

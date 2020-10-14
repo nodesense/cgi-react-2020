@@ -42,7 +42,7 @@ import PropTypes from "prop-types";
     }
 
     // is not called during initial/creation stage
-    // called only during update cycle, this.forceUpdate, this.setState, parent render
+    // called only during update cycle, this.setState, when parent render called
     // should return true or false
     // if return true, render shall be called on update cycle
     // if return false, render shall not be called on update cycle
@@ -52,6 +52,7 @@ import PropTypes from "prop-types";
         console.log("\nnext state", nextState, "\ncurrent state", this.state)
         // FIXME: compare prevProp with current props, prev state and current state, return true or false
 
+        // cons: code is not scable across as many properties/state attribute
         const canRender = nextProps.amount !== this.props.amount ||
                           nextProps.count !== this.props.count ||
                           nextState.discount !== this.state.discount ||

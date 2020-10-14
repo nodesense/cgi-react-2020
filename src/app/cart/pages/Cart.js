@@ -75,10 +75,17 @@ class Cart extends Component {
         this.setState({
             items: []
         }) 
+
+         
     }
 
     //dummy
     refresh = () => {
+        // forceUpdate calls render without shouldComponentUpdate
+        //this.forceUpdate()
+
+        // setState goes through shouldComponentUpdate
+        // GOOD to use setState
         this.setState({
             flag: true
         })
@@ -102,7 +109,7 @@ class Cart extends Component {
         }
     }
 
-    // called before render
+    // called before render, creation/updation
     static getDerivedStateFromProps(props, state) {
         console.log("Cart getDerivedStateFromProps")
         // memoize, to avoid expensive computations again and again

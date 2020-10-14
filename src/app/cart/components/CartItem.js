@@ -25,7 +25,7 @@ class CartItem extends PureComponent {
     // called after virtual dom mounted into real dom
     // REAL DOM is READY
 
-    // Use cases: Make API call, Access DOM, setTimer, Subscribe for changes from redux/rxjs
+    // Use cases: Make API call, Access DOM/ref, setTimer, Subscribe for changes from redux/rxjs
     componentDidMount() {
         console.log("CartItem componentDidMount");
     }

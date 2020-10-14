@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import "./index.css"; 
 
 import {
-        BrowserRouter as Router
+        BrowserRouter as Router, // url would like http://localhost:3000/about
         } from 'react-router-dom';
 
 

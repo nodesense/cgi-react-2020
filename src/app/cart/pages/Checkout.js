@@ -27,13 +27,14 @@ class Checkout extends React.Component {
 
     componentDidMount() {
         // Ref is available after component mounted
+        // always use ref in componentDidMount and/or componentDidUpdate
         // current is a real dom, input tag
         console.log("REAL DOM", this.firstnameRef.current)
         this.firstnameRef.current.focus(); // set the cursor to input element
     }
 
     handleChange = (e) => {
-        const target = e.target; // target is input real dom
+        const target = e.target; // target is input/select real dom
         const {name, value} = target; // name is firstlame, lastname, city etc
         console.log("name", name, "value", value)
 

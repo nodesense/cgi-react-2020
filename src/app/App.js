@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import Checkout from './cart/pages/Checkout';
+import Contact from './pages/Contact';
 
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
@@ -73,14 +74,20 @@ class App extends React.Component {
                 <Switch>
                     <Route path="/" exact component={Home} />
 
+                    {/* to pass props to component */}
                     <Route path="/cart">
                         <Cart />
+                    </Route>
+
+                    <Route path="/contact">
+                        <Contact />
                     </Route>
 
                     <Route path="/checkout">
                         <Checkout />
                     </Route>
 
+                    {/* pass props and router props to component, preffered method */}
                     <Route path="/about"
                         render= { (props) => (<About founders= { ['Venkat', 'Krish'] }
                                                         branches = { { headOffice: {city: 'BLR'}, branchOffice: {city: 'Chennai'} }   } 
