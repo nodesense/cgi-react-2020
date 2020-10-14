@@ -113,3 +113,37 @@ Parent     effect - it still building the ui
 
     <childn></childn>
 </parent> - after the child
+
+
+# React problems
+
+    1. Component State Class/functional useState
+        state will released/deleted when the component is unmouned
+
+    2. Data with parent component 
+        parent [data] - this data to be shared with comp 20, via props
+            child comp 1
+                componet 2.1 [share data with sibling 2.3]
+                    component 3
+                        componetn 4
+                            ... component 20
+                component 2.3
+
+    3. Architecture
+        React is UI Library 
+            React is View only library
+                all the logics
+                    Data  - Model
+                    business logic
+                    api interactions
+
+    4. Sharing data between routed views: How cart componet can share data with checkout
+
+
+    5. Application Common data: Using global variables not a solution
+            User
+            Reference Data
+            ...
+
+
+
