@@ -1,7 +1,10 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 
 import {authReducer} from './auth/state/reducers/authReducer';
 import * as actions from './auth/state/actions/auth.actions';
+import {loggerMiddleware} from './auth/state/middlewares/loggerMiddleware';
+import {authMiddleware} from './auth/state/middlewares/authMiddleware';
+
 
 
 // while creating store, store first calls authReducer with undefined state to initialize default value
@@ -23,7 +26,9 @@ const rootReducer = combineReducers({
     // .....
 })
 
-const store = createStore(rootReducer)
+// all dispatches goes via loggerMiddleware
+const store = createStore(rootReducer, 
+                          applyMiddleware(loggerMiddleware,authMiddleware))
 
 // STORE CODE END
 // -----
@@ -73,5 +78,4 @@ console.log("STATE ", store.getState())
 
 // TODO: LOGOUT
 store.dispatch(actions.logout())
-
 console.log("STATE ", store.getState())
