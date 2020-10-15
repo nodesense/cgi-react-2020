@@ -11,6 +11,9 @@ import React from 'react'; // JSX
 import Header from './containers/Header';
 
 import Footer from './components/Footer';
+
+import AuthRoute from './components/AuthRoute';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
@@ -98,17 +101,26 @@ class App extends React.Component {
                         <Checkout />
                     </Route>
 
-                    <Route path="/products">
+                    {/* <Route path="/products">
                         <ProductList />
-                    </Route>
+                    </Route> */}
+
+                    <AuthRoute path="/products" component={ProductList} />
+
 
                     <Route path="/page-counter">
                         <PageCounter />
                     </Route>
 
+                    <AuthRoute path="/favorites" component={Favorites} />
 
-                    <Route path="/favorites">
+                    {/* <Route path="/favorites">
                         <Favorites />
+                    </Route> */}
+
+                    <Route path="/login">
+                        <h2>Login now</h2>
+                        <p>Enter your credential</p>
                     </Route>
 
                     {/* pass props and router props to component, preffered method */}
