@@ -20,7 +20,10 @@
     npm install axios
 
     npm install redux redux-thunk
+
+    npm install react-redux
     
+
 ```
 
 ## REST API

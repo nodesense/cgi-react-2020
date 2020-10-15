@@ -9,15 +9,19 @@ import {
         } from 'react-router-dom';
 
 // execute the store.js
-import "./app/store"; // run in console
+import store from  "./app/store"; // run in console
+
+import {Provider} from 'react-redux';
 
 // default import
 import App from './app/App';
  
 ReactDOM.render((
+                <Provider store={store}>
                   <Router>
                     <App />
                   </Router> 
+                </Provider>
                 ), 
                 document.getElementById('root'));
         

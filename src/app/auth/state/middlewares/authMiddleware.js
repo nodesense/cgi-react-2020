@@ -15,6 +15,7 @@ export const authMiddleware = ({getState, dispatch}) => next => action =>  {
 
     if (action.type === ActionTypes.AUTH_LOGOUT) {
         window.localStorage.removeItem("identity")
+        window.localStorage.removeItem("token")
     }
 
     return next(action)

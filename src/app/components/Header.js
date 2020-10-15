@@ -11,6 +11,10 @@ import {NavLink} from 'react-router-dom';
 // the props are passed as props object
 function Header(props) {
     console.log('Header render', props);
+
+    // passed from header container component
+    const {authenticated, identity, login, logout} = props;
+
     // props are immutable, changing will break app or not a good practice
     // props.appTitle = "Training App"; // error 
     // parent own the data [read/write], child is a consumer [read only]
@@ -31,6 +35,13 @@ function Header(props) {
             <NavLink to="/contact" className="button" activeClassName="success"> Contact </NavLink>
             <NavLink to="/page-counter" className="button" activeClassName="success"> Page Counter </NavLink>
             <NavLink to="/favorites" className="button" activeClassName="success"> Favorites </NavLink>
+        
+
+            {authenticated? (<button onClick={ ()=> logout() }>Logout</button>)
+                          : (<button onClick={ ()=> login('admin', 'admin') }>Login</button>) }
+
+            {authenticated && <span>{identity.name}</span>}
+
         </div>
     )
 }

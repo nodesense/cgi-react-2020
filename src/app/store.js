@@ -5,7 +5,8 @@ import * as actions from './auth/state/actions/auth.actions';
 import {loggerMiddleware} from './auth/state/middlewares/loggerMiddleware';
 import {authMiddleware} from './auth/state/middlewares/authMiddleware';
 
-
+import thunkMiddleware from 'redux-thunk';
+ 
 
 // while creating store, store first calls authReducer with undefined state to initialize default value
 // for undefined state arg, reducer shall use default value INITIAL_STATE
@@ -26,11 +27,28 @@ const rootReducer = combineReducers({
     // .....
 })
 
+// Initial state for the store
+const identityJsonStr = window.localStorage.getItem("identity")
+
+const identity = (identityJsonStr && JSON.parse(identityJsonStr)) || undefined
+
+const authInitialState = {
+    authenticated: identity? true: false, // can be token 
+    identity: identity? identity: {}
+}
+
 // all dispatches goes via loggerMiddleware
 const store = createStore(rootReducer, 
-                          applyMiddleware(loggerMiddleware,authMiddleware))
+                            {
+                               // used for setting initial state from localStorage, from html page
+                               //stateName: initialValue
+                               auth:  authInitialState
+                            }, 
+                          applyMiddleware(thunkMiddleware, loggerMiddleware,authMiddleware))
 
-// STORE CODE END
+
+export default store;
+                          // STORE CODE END
 // -----
 
 // REDUX EXAMPLE here start
@@ -61,10 +79,6 @@ store.subscribe ( () => {
     console.log("Subscribe2 callback called");
 })
 
-//loginSucceeded is a Action Creators, create action loginSuccessAction
-const loginSuccessAction = actions.loginSucceeded({username: 'venkat', email: 'venkat@example.com'})
-console.log("LOGIN SUCCESS DISPATCH ", loginSuccessAction)
-
 //dispatch shall calls the reducers
 // REDUX DISPATCH WORKS SYNC
 // 1. dispatch
@@ -72,10 +86,20 @@ console.log("LOGIN SUCCESS DISPATCH ", loginSuccessAction)
 // 3. update the state in the store
 // 4. call subscribers callback
 // 5. then call exit
-store.dispatch(loginSuccessAction)
+//store.dispatch(loginSuccessAction)
+
+
+// REAL Login example with redux-thunk, ensure that thunk in the applyMiddleware
+// login returns a function callback, not an object
+
+//const loginActionFunc = actions.login("admin", "admin")
+//console.log("login Func", loginActionFunc)
+// now, dispatch the action function to store
+// store.dispatch(loginActionFunc)
+
 
 console.log("STATE ", store.getState())
 
 // TODO: LOGOUT
-store.dispatch(actions.logout())
-console.log("STATE ", store.getState())
+//store.dispatch(actions.logout())
+//console.log("STATE ", store.getState())

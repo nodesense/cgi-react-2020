@@ -3,7 +3,13 @@
 import React from 'react'; // JSX
 
 // import from relative path
-import Header from './components/Header';
+
+// commenting, since we have container component
+// import Header from './components/Header';
+
+// Header containers, wrap the actual Header component
+import Header from './containers/Header';
+
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
