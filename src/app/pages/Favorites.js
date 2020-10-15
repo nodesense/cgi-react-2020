@@ -1,10 +1,12 @@
 // app/pages/Favorites.js
 import React, {useReducer} from 'react';
 
+//action-types.js
 const FAVORITE_ADD = '[favorite add]';
 const FAVORITE_REMOVE = '[favorite remove]';
 const FAVORITE_RESET = '[favorite reset]';
 
+//reducer.js
 const reducer = (state, action) => {
     switch(action.type) {
         case FAVORITE_ADD: {
@@ -31,32 +33,37 @@ const reducer = (state, action) => {
     }
 }
 
+ 
 const INITIAL_STATE = {
     favorites: [],
     count: 0
 }
 
-const Favorite = ({favorite}) => {
+const Favorite = ({favorite, dispatch}) => {
     
     return (
         <div>
             <h2>{favorite.name}</h2>
-            <button onClick= { () => { /*dispatch*/ } }>X</button> 
+            <button onClick= { () => dispatch(remove(favorite.id)) }>X</button> 
         </div>
     )
 }
 
-const FavoriteList = ({favorites}) => {
+const FavoriteList = ({favorites, dispatch}) => {
     return (
         <div>
             <h4>Favorite List</h4>
             {
-                favorites.map (favorite => <Favorite key={favorite.id} favorite={favorite} />)
+                favorites.map (favorite => <Favorite key={favorite.id} 
+                                            favorite={favorite} 
+                                            dispatch={dispatch}
+                                            />)
             }
         </div>
     )
 }
 
+// actions.js
 // action creators, a function that creates action, helper method
 // function add (id, name) { return {type: FAVORITE_ADD, item: {id: id, name: name}}
 const add = (id, name) => ({type: FAVORITE_ADD, item: {id, name}})
@@ -84,7 +91,10 @@ const Favorites = ({}) => {
             }}>
                     Add
             </button>
-            <FavoriteList favorites={favorites} />
+
+            <button onClick={ () => dispatch(reset())}>Reset</button>
+
+            <FavoriteList favorites={favorites} dispatch={dispatch} />
         </div>
     )
 }

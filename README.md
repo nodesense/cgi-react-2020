@@ -18,6 +18,9 @@
     npm install memoize-one
 
     npm install axios
+
+    npm install redux redux-thunk
+    
 ```
 
 ## REST API
