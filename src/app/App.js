@@ -11,6 +11,10 @@ import NotFound from './pages/NotFound';
 import Checkout from './cart/pages/Checkout';
 import Contact from './pages/Contact';
 
+import PageCounter from './pages/PageCounter';
+import Favorites from './pages/Favorites';
+
+
 // FIXME: Lazy load cart using router
 import Cart from './cart/pages/Cart';
 import ProductList from './pages/ProductList';
@@ -90,6 +94,15 @@ class App extends React.Component {
 
                     <Route path="/products">
                         <ProductList />
+                    </Route>
+
+                    <Route path="/page-counter">
+                        <PageCounter />
+                    </Route>
+
+
+                    <Route path="/favorites">
+                        <Favorites />
                     </Route>
 
                     {/* pass props and router props to component, preffered method */}
