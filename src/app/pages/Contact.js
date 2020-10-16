@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 
 import Counter from '../components/Counter';
 import Like from '../components/Like';
@@ -23,21 +23,36 @@ function useLocalState(key, initialValue) {
         }
     }, []) // [] called only on initial stage
 
-    // useCallback
-    function setLocalStorage(newValue) {
+    
+    // this function will be created again and again which we don't want
+    // function setLocalStorage(newValue) {
+    //     console.log("setLocalStorage", newValue)
+    //     setValue(newValue)
+    //     window.localStorage.setItem(key, newValue)
+    // }
+
+    // useCallback, setLocalStorage is memoized
+    const setLocalStorage = useCallback( (newValue) => {
         console.log("setLocalStorage", newValue)
         setValue(newValue)
         window.localStorage.setItem(key, newValue)
-    }
+    })
 
-    return [value, setLocalStorage];
+    // useCallback, resetLocalStorage is memoized
+    const resetLocalStorage = useCallback( () => {
+        console.log("resetLocalStorage")
+        setValue(0)
+        window.localStorage.setItem(key, 0)
+    })
+
+    return [value, setLocalStorage, resetLocalStorage];
 }
 
 const Contact = ({}) => {
     const [visits, setVisit] = useState(10);
     const [flag, setFlag] = useState(true)
 
-    const [persitedCount, setPersitedCount] = useLocalState("PersistedCounter", 3333);
+    const [persitedCount, setPersitedCount, clearCount] = useLocalState("PersistedCounter", 3333);
     console.log("**persitedCount is ", persitedCount)
 
 
@@ -99,6 +114,12 @@ const Contact = ({}) => {
             <button onClick={ () => setPersitedCount(persitedCount + 1)}>
                 +1 persitedCount
             </button>
+
+            <button onClick={ () => clearCount()}>
+                reset local
+            </button>
+
+            
         </div>
     )
 }
