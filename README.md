@@ -22,6 +22,9 @@
     npm install redux redux-thunk
 
     npm install react-redux
+
+    npm install formik
+    
     
 
 ```

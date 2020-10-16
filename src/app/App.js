@@ -113,6 +113,10 @@ class App extends React.Component {
                     <Route path="/products/edit/:id"
                            render = {(props) => ( <ProductEdit {...props} /> )} />
 
+                    <Route path="/products/create"
+                           render = {(props) => ( <ProductEdit {...props} /> )} />
+
+
                     <Route path="/page-counter">
                         <PageCounter />
                     </Route>

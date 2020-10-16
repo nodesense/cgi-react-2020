@@ -10,3 +10,11 @@ export const getJson = (url, config={}) => {
 export const postJson = (url, data, config={}) => {
     return axios.post(url, data, config)
 }
+
+export const putJson = (url, data, config={}) => {
+    return axios.put(url, data, config)
+}
+
+export const deleteJson = (url,  config={}) => {
+    return axios.delete(url, config)
+}

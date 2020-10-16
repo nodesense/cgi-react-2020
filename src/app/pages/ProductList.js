@@ -41,6 +41,9 @@ class ProductList extends React.Component {
         return (
             <div>
                 <h2>Products</h2>
+                
+                <Link className="button" to="/products/create">Create</Link>
+
                 <ol>
                     {
                         this.state
