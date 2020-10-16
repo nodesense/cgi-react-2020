@@ -134,3 +134,52 @@ useCallback
     mount    -- build deep nesting component tree
     shallow  -- build only current component, not child/nested
     renderer - similar to test renderer [not used much]
+
+React Loadable
+
+production build
+
+npm run build
+
+to run the product build in local laptop
+
+may need run as administrator
+
+npm install http-server -g
+
+
+cd build
+
+http-server -c-1 -p 8888
+
+
+Browser: localhost:8888
+
+
+1       .2    .3
+MAJOR.MINOR.PATCH
+
+"axios": "^0.20.0" ==> ^ LOCK the MAJOR Version
+    0. is fixed
+     .20,.21.........67... .90
+
+"formik": "2.2.0" // LOCK ALL VERSION
+
+---
+
+Team 1
+    npm install Aug 2020
+        formik: 2.1.4
+
+Team 2
+        Oct 2020
+        formik: 2.1.4
+Jenkin Build
+        Oct 2020
+        formik: 2.1.4
+
+
+package-lock.json / npm
+     formik: 2.1.4
+yarn.lock 
+     formik: 2.1.4

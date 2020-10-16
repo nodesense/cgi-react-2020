@@ -25,7 +25,10 @@ import Favorites from './pages/Favorites';
 
 
 // FIXME: Lazy load cart using router
-import Cart from './cart/pages/Cart';
+// split the code into smaller pieces, so that code can be downloaed on need basic
+// do not use import statement for lazy loading of bundle
+// import Cart from './cart/pages/Cart';
+
 import ProductList from './pages/ProductList';
 
 import ProductEdit from './pages/ProductEdit';
@@ -33,6 +36,21 @@ import ProductEdit from './pages/ProductEdit';
 import {Route, Switch} from 'react-router-dom';
 
 import ThemeContext from './contexts/Theme';
+
+import ReactLoadable from 'react-loadable';
+
+
+function Loading() {
+    return (<h2>Loading .......</h2>)
+}
+
+// use DynamicCart in the route
+
+const DynamicCart = ReactLoadable({
+    loader: () => import('./cart/pages/Cart'),
+    loading: Loading, // shown as place holder when internet is slow
+})
+
 
 // composition of components, not HTML TAGS
 // parent, child
@@ -92,7 +110,7 @@ class App extends React.Component {
 
                     {/* to pass props to component */}
                     <Route path="/cart"
-                           render={ ( props =>  <Cart {...props} /> ) }
+                           render={ ( props =>  <DynamicCart {...props} /> ) }
                     >
                     </Route>
 

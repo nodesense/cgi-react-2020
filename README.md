@@ -32,6 +32,10 @@
 
     npm i enzyme enzyme-adapter-react-16 enzyme-to-json
 
+    code spliting
+
+    npm i react-loadable
+
 ```
 
 ## REST API
