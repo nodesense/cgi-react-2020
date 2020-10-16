@@ -41,3 +41,33 @@ useCallback
         restore first time
         store the results back when component destroyed
     -- useState - state is lost when component unmounted
+
+
+# forwardRef
+    ref to dom, class component instance
+
+    function Input({}) {
+        return (
+            <div>
+                <label forName="Age">
+                <input ref={ref} {...props} />
+            </div>
+        )
+    }
+
+    -----
+
+
+    ContactForm 
+
+    constructor() {
+        this.ref = React.createRef()
+    }
+
+    componentDidMount() {
+        this.ref.current.focus();
+    }
+
+    render
+        <form>
+            <Input ref={this.ref}>

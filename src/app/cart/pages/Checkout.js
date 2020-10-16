@@ -11,6 +11,22 @@ import React from 'react';
 // End user interact with Real dom
 // Forms are control, accept inputs from the user
 
+//forwardRef, the second arg shall be ref reference from parent component
+//ref represent emailRef created in parent
+const  Input = React.forwardRef((props, ref) => {
+    //otherProps contains everything from props except label, name
+    const {label, name, ...otherProps} = props
+
+    return (
+        <div>
+            <label htmlFor={name}>
+                {label}
+            </label>
+            <input name={name} ref={ref} {...otherProps} />
+        </div>
+    )
+})
+
 class Checkout extends React.Component {
     constructor(props) {
         super(props)
@@ -18,11 +34,13 @@ class Checkout extends React.Component {
         this.state = {
             firstname: 'Gopalakrishnan',
             lastname: '',
-            city: ''
+            city: '',
+            customerEmail: ''
         }
 
         // don't assign ref to state, as ref is reference to dom, control/ui, not a data
         this.firstnameRef = React.createRef();
+        this.emailRef = React.createRef();
     }
 
     componentDidMount() {
@@ -30,7 +48,11 @@ class Checkout extends React.Component {
         // always use ref in componentDidMount and/or componentDidUpdate
         // current is a real dom, input tag
         console.log("REAL DOM", this.firstnameRef.current)
-        this.firstnameRef.current.focus(); // set the cursor to input element
+        
+        // this.firstnameRef.current.focus(); // set the cursor to input element
+
+        // forwardRef, current is for input field, in <Input email
+        this.emailRef.current.focus()
     }
 
     handleChange = (e) => {
@@ -66,11 +88,15 @@ class Checkout extends React.Component {
                            ref={this.firstnameRef}
                            />
 
-                    Last name
-                    <input name="lastname" type="text" 
-                           value={this.state.lastname}
-                           onChange={this.handleChange}
-                           />
+                    <Input 
+                        label="Last Name"
+                        name="lastname" type="text" 
+                        value={this.state.lastname}
+                        onChange={this.handleChange}
+                        style = { {background: 'lightblue'} }
+
+                        onChange={this.handleChange}
+                    />
                     
                     City
                     <select name="city"
@@ -81,6 +107,18 @@ class Checkout extends React.Component {
                         <option value="PUN">Pune</option>
                         <option value="MUM">Mumbai</option>
                     </select>
+                    
+                    <Input 
+                        label="Customer Email"
+                        ref={this.emailRef}
+                        name="customerEmail"
+                        type="email"
+                        value={this.state.customerEmail}
+                        style = { {background: 'yellow'} }
+
+                        onChange={this.handleChange}
+                    />
+
                 </form>
             </div>
         )
