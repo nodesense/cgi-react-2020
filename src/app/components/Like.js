@@ -160,7 +160,7 @@ class Like extends React.Component {
                 <button onClick={this.up}> +1 this ERROR </button>
                 {/* => ensure that this is from lexical scope, ie class scope
                     => function is created for every re-render
-                    generally avoid using => in render function as it may be called many times
+                    generally avoid using => in render function as it may be created many times
                         creates functions many times, cause issue pure component
                 */}
                 <button onClick={ (e) => this.up(e) }> +1/this working, not recommended</button>

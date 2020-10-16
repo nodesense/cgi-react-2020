@@ -24,16 +24,34 @@ class Cart extends Component {
 
         this.state = {
             items: [ 
-            			{id: 1, name: 'P1', price: 100, qty: 5}
+                        {id: 1, name: 'P1', price: 100, qty: 5},
+                        ...this.generateItems()
             	   ],
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty
             flag: true
         }
     }
+
+    generateItems() {
+        const items = [];
+        for (let i = 0; i < 1000; i++) {
+            const id = Math.ceil(Math.random() * 10000);
+            const item = {
+                id,
+                name: `Product ${id}`,
+                price: Math.ceil(Math.random() * 100),
+                qty: 1
+            }
+
+            items.push(item)
+        }
+
+        return items;
+    }
     
     addItem = () => {
-        let id = Math.ceil(Math.random() * 10000);
+        const id = Math.ceil(Math.random() * 10000);
         let item = {
             id,
             name: `Product ${id}`,

@@ -1,9 +1,45 @@
 // CartList.js
 
-import React, {PureComponent} from "react";
+import React, {PureComponent, Component} from "react";
 import PropTypes from "prop-types";
 
+import {FixedSizeList as List} from 'react-window';
+
 import CartItem from "./CartItem";
+
+
+const ClassicRows = ( {items, updateItem, removeItem} ) => {
+
+    return (
+        <>
+        {
+        items.map(item => <CartItem key={item.id} item={item}
+                            updateItem={updateItem}
+                            removeItem={removeItem} />)
+        }
+        </>
+    )
+    
+}
+
+const RenderCartItem = ({index, style, data, removeItem, updateItem}) => {
+    console.log("index ", index)
+    const item = data[index];
+    console.log("Rendering ", item)
+    return (<CartItem key={item.id} item={item}
+        updateItem={updateItem}
+        removeItem={removeItem} />)
+}
+
+const VirtualizedRows = ( {items, updateItem, removeItem} ) => {
+
+    return (
+        <List itemData={items} height={600} itemSize={45} itemCount={items.length} width={900} >
+            {RenderCartItem}
+        </List>
+    )
+    
+}
 
  //TODO: PureComponent
 // PureComponent is a component, derived from Component class
@@ -37,13 +73,10 @@ import CartItem from "./CartItem";
                 </thead>
                 <tbody>
                     {/* TODO props items map with CartItem */ }
+                    {/* render all the items, not efficient */}
 
-                    {
-                        items.map(item => <CartItem key={item.id} item={item}
-                                            updateItem={updateItem}
-                                            removeItem={removeItem} />)
-                    }
-
+                    <ClassicRows items={items} updateItem={updateItem} removeItem={removeItem} />  
+                    {/* <VirtualizedRows items={items} updateItem={updateItem} removeItem={removeItem} /> */}
                 </tbody>
             </table>
             </div>

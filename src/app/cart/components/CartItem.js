@@ -1,5 +1,5 @@
 // CartItem.js
-import React, {PureComponent} from "react";
+import React, {PureComponent, Component} from "react";
 import PropTypes from "prop-types";
 
 import ThemeContext from '../../contexts/Theme';

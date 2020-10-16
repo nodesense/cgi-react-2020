@@ -33,6 +33,12 @@ function luckyEven() {
     return promise;
 }
 
+const Input = React.forwardRef((props, ref) => (
+  <div>
+      <input ref={ref} name="test" />
+  </div>  
+))
+
 //React.Component === Component
 class Home extends Component {
     constructor(props) {
@@ -40,6 +46,8 @@ class Home extends Component {
         this.state = {
             homeLikes : 1000
         }
+
+        this.ref = React.createRef();
     }
 
     reset = (e) => {
@@ -68,6 +76,11 @@ class Home extends Component {
             console.log("Promise finally..")
         })
         console.log("testPromise exit")
+    }
+
+    componentDidMount() {
+        this.ref.current.value = "Welcome"
+        this.ref.current.focus();
     }
 
     // Promise.all
@@ -103,6 +116,8 @@ class Home extends Component {
 
 
                 <Like pageName="Home" likes={this.state.homeLikes} />
+            
+                <Input ref={this.ref} />
             </div>
         )
     }
