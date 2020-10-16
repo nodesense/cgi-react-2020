@@ -24,9 +24,8 @@
     npm install react-redux
 
     npm install formik
-    
-    
 
+    npm install yup
 ```
 
 ## REST API
