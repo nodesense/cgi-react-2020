@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test PageCouner component test test page counter defaults 1`] = `
+<div>
+  <h2>
+    Page Counter
+  </h2>
+  <p
+    className="p1"
+  >
+    Counter 
+    100
+     
+  </p>
+  <button
+    onClick={[Function]}
+  >
+     +1 
+  </button>
+  <button
+    onClick={[Function]}
+  >
+     +5 
+  </button>
+  <button
+    onClick={[Function]}
+  >
+     -1 
+  </button>
+  <button
+    onClick={[Function]}
+  >
+     Reset 
+  </button>
+</div>
+`;

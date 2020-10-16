@@ -26,6 +26,12 @@
     npm install formik
 
     npm install yup
+
+
+    npm install react-test-renderer
+
+    npm i enzyme enzyme-adapter-react-16 enzyme-to-json
+
 ```
 
 ## REST API

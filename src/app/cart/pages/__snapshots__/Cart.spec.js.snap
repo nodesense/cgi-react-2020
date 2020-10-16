@@ -1,0 +1,220 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart Tests test initial component 1`] = `
+<MemoryRouter>
+  <Router
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "canGo": [Function],
+        "createHref": [Function],
+        "entries": Array [
+          Object {
+            "hash": "",
+            "key": "ntujqk",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+        ],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "index": 0,
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "key": "ntujqk",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+  >
+    <Cart>
+      <div>
+        <h2>
+          Cart
+        </h2>
+        <button
+          onClick={[Function]}
+        >
+          Add Item
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Empty
+        </button>
+        <button
+          onClick={[Function]}
+        >
+          Refresh
+        </button>
+        <Link
+          className="button"
+          to="/checkout"
+        >
+          <LinkAnchor
+            className="button"
+            href="/checkout"
+            navigate={[Function]}
+          >
+            <a
+              className="button"
+              href="/checkout"
+              onClick={[Function]}
+            >
+              Checkout
+            </a>
+          </LinkAnchor>
+        </Link>
+        <CartList
+          items={
+            Array [
+              Object {
+                "id": 1,
+                "name": "P1",
+                "price": 100,
+                "qty": 5,
+              },
+            ]
+          }
+          removeItem={[Function]}
+          updateItem={[Function]}
+        >
+          <div>
+            <h2>
+              Cart List
+            </h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>
+                    Name
+                  </th>
+                  <th>
+                    Price
+                  </th>
+                  <th>
+                    Qty
+                  </th>
+                  <th>
+                    Total
+                  </th>
+                  <th>
+                    Delete
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <ClassicRows
+                  items={
+                    Array [
+                      Object {
+                        "id": 1,
+                        "name": "P1",
+                        "price": 100,
+                        "qty": 5,
+                      },
+                    ]
+                  }
+                  removeItem={[Function]}
+                  updateItem={[Function]}
+                >
+                  <CartItem
+                    item={
+                      Object {
+                        "id": 1,
+                        "name": "P1",
+                        "price": 100,
+                        "qty": 5,
+                      }
+                    }
+                    key="1"
+                    removeItem={[Function]}
+                    updateItem={[Function]}
+                  >
+                    <tr>
+                      <td>
+                        P1
+                         
+                      </td>
+                      <td>
+                        100
+                      </td>
+                      <td>
+                        5
+                      </td>
+                      <td>
+                        500
+                      </td>
+                      <td>
+                        <button
+                          onClick={[Function]}
+                        >
+                          +1
+                        </button>
+                        <button
+                          onClick={[Function]}
+                        >
+                          -1
+                        </button>
+                        <button
+                          onClick={[Function]}
+                          style={
+                            Object {
+                              "background": "lightblue",
+                            }
+                          }
+                        >
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  </CartItem>
+                </ClassicRows>
+              </tbody>
+            </table>
+          </div>
+        </CartList>
+        <CartSummary
+          amount={500}
+          count={5}
+        >
+          <div>
+            <h2>
+              Cart Summary
+            </h2>
+            <p>
+               Amount : 
+              500
+               
+            </p>
+            <p>
+               Count : 
+              5
+               
+            </p>
+            <p>
+               Discount: 
+              10
+               %
+            </p>
+            <p>
+               Grand Total: 
+              450
+               
+            </p>
+          </div>
+        </CartSummary>
+      </div>
+    </Cart>
+  </Router>
+</MemoryRouter>
+`;

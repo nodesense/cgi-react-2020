@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cart shallow Tests test initial component 1`] = `
+<div>
+  <h2>
+    Cart
+  </h2>
+  <button
+    onClick={[Function]}
+  >
+    Add Item
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Empty
+  </button>
+  <button
+    onClick={[Function]}
+  >
+    Refresh
+  </button>
+  <Link
+    className="button"
+    to="/checkout"
+  >
+    Checkout
+  </Link>
+  <CartList
+    items={
+      Array [
+        Object {
+          "id": 1,
+          "name": "P1",
+          "price": 100,
+          "qty": 5,
+        },
+      ]
+    }
+    removeItem={[Function]}
+    updateItem={[Function]}
+  />
+  <CartSummary
+    amount={500}
+    count={5}
+  />
+</div>
+`;

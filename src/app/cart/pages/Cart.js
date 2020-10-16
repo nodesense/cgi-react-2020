@@ -25,7 +25,7 @@ class Cart extends Component {
         this.state = {
             items: [ 
                         {id: 1, name: 'P1', price: 100, qty: 5},
-                        ...this.generateItems()
+                        //...this.generateItems()
             	   ],
             amount: 0, // sum of all items price * qty
             count: 0, // sum of all items qty

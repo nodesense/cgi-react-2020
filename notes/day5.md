@@ -87,3 +87,50 @@ useCallback
     match
     history
     location
+
+# Unit testing
+    White box testing/code testing
+
+    Component
+    APIs
+    Containers
+    etc
+    Js
+
+    if..else
+    boundary
+    switch..
+    ...
+
+## Jasmine
+    Popular BDD Test tool
+        Spec - specification
+            test suite - a collection of test cases
+                test case - a specific test adding two positive number
+                    test code  - assert (10 + 20) == 30
+        Library
+            expectation, matchers
+            expect(10).toBe(10) // 10 == 10
+## JEST
+    Popular Test Runner
+        IT runs the test, generate reports, print errors
+        Extends jasmine by default
+
+        Friendly with react
+
+### Run tests
+
+```
+    npm test
+```
+
+### Enzyme 
+
+    configure enzyme with adaptors
+
+    make react testing more API driver/data driven
+    selector to select v.doms/find
+
+    mount    -- build deep nesting component tree
+    shallow  -- build only current component, not child/nested
+    renderer - similar to test renderer [not used much]

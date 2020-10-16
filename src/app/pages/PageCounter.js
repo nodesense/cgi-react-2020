@@ -12,7 +12,7 @@ import React, {useReducer} from 'react';
 // action is an OBJECT { type: 'STRING preferred/unique one', payload/addtional attributes is completely optional}
 // should not mutate the data
 // reducers provides logic to action
-const reducer = (state, action) => {
+export const reducer = (state, action) => {
     console.log("reducer called, state ", state, " action ", action)
     switch(action.type) {
 
@@ -45,8 +45,7 @@ const PageCounter = ({}) => {
     return (
         <div>
             <h2>Page Counter</h2>
-
-            <p>Counter {state.counter} </p>
+            <p className="p1">Counter {state.counter} </p>
 
             <button onClick={() => dispatch({type: 'increment', value: 1}) }> +1 </button>
             <button onClick={() => dispatch({type: 'increment', value: 5}) }> +5 </button>
