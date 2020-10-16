@@ -71,3 +71,19 @@ useCallback
     render
         <form>
             <Input ref={this.ref}>
+
+
+===
+
+# Formik - makes form easy
+
+# yup - js package, for json validation
+
+# Formik + yup = validation 
+
+
+# React Router DOM shall pass props to component
+
+    match
+    history
+    location

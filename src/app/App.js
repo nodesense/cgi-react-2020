@@ -28,6 +28,8 @@ import Favorites from './pages/Favorites';
 import Cart from './cart/pages/Cart';
 import ProductList from './pages/ProductList';
 
+import ProductEdit from './pages/ProductEdit';
+
 import {Route, Switch} from 'react-router-dom';
 
 import ThemeContext from './contexts/Theme';
@@ -89,8 +91,9 @@ class App extends React.Component {
                     <Route path="/" exact component={Home} />
 
                     {/* to pass props to component */}
-                    <Route path="/cart">
-                        <Cart />
+                    <Route path="/cart"
+                           render={ ( props =>  <Cart {...props} /> ) }
+                    >
                     </Route>
 
                     <Route path="/contact">
@@ -105,8 +108,10 @@ class App extends React.Component {
                         <ProductList />
                     </Route> */}
 
-                    <AuthRoute path="/products" component={ProductList} />
+                    <AuthRoute path="/products" exact component={ProductList} />
 
+                    <Route path="/products/edit/:id"
+                           render = {(props) => ( <ProductEdit {...props} /> )} />
 
                     <Route path="/page-counter">
                         <PageCounter />
@@ -122,6 +127,8 @@ class App extends React.Component {
                         <h2>Login now</h2>
                         <p>Enter your credential</p>
                     </Route>
+
+
 
                     {/* pass props and router props to component, preffered method */}
                     <Route path="/about"

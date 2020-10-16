@@ -101,9 +101,14 @@ class Home extends Component {
         })
     }
 
+    gotoCart = () => {
+        // programatically navigate to another page using spa
+        this.props.history.push("/cart")
+    }
+
 
     render() {
-        console.log("Home render")
+        console.log("Home render", this.props)
         return (
             <div>
                 <h2>Home Page</h2>
@@ -116,8 +121,12 @@ class Home extends Component {
 
 
                 <Like pageName="Home" likes={this.state.homeLikes} />
+
+
             
                 <Input ref={this.ref} />
+
+                <button onClick={this.gotoCart}>To cart page</button>
             </div>
         )
     }

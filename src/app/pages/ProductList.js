@@ -2,6 +2,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import {Link} from 'react-router-dom';
+
 import * as productsApi from '../services/products';
 
 console.log("REACT_APP_API_ENDPOINT", process.env.REACT_APP_API_ENDPOINT)
@@ -41,7 +43,10 @@ class ProductList extends React.Component {
                 <h2>Products</h2>
                 <ol>
                     {
-                        this.state.products.map (product => <li key={product.id}>{product.name}</li>)
+                        this.state
+                        .products
+                        .map (product => <li key={product.id}> 
+                                            <Link to={`/products/edit/${product.id}`}>{product.name}</Link> </li>)
                     }
                 </ol>
             </div>
